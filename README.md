@@ -37,9 +37,10 @@ just as soon as I get it installed.
 
 ---
 
-Module  | Contents
-------  | --------
-hello   | a simple routine inspired by the K&R Hello World program
+Module    | Contents
+------    | --------
+hello     | a simple routine inspired by the K&R Hello World program
+fibonacci | a dumb, recursive, reimplementation of the Fibonacci series
 
 ---
 
