@@ -37,10 +37,11 @@ just as soon as I get it installed.
 
 ---
 
-Module    | Contents
-------    | --------
-hello     | a simple routine inspired by the K&R Hello World program
-fibonacci | a dumb, recursive, reimplementation of the Fibonacci series
+Module          | Contents
+------          | --------
+hello           | a simple routine inspired by the K&R Hello World program
+fib_exponential | a recursive Fibonacci function with exponential time complexity
+fib_linear      | a recursive Fibonacci function with linear time complexity
 
 ---
 

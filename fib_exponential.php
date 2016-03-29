@@ -18,11 +18,11 @@
  */
 
 /**
- * A phpdoc friendly function container
+ * A container for a recursive fibonacci function with exponential time complexity
  *
  * ... without which phpdoc, it seems, will not generate documentation for the function.
  */
-class Dumb
+class Exponential
 {
     /**
      *  Calculate the nth term of the Fibonacci series
@@ -37,7 +37,7 @@ class Dumb
         if ($nth < 2)
             return $nth;
         else
-            return Dumb::fibonacci ($nth - 1) + Dumb::fibonacci ($nth - 2);
+            return Exponential::fibonacci ($nth - 1) + Exponential::fibonacci ($nth - 2);
     }
 }
 
@@ -49,7 +49,7 @@ if (isset ($argv))
     {
         // Print the nth Fibonacci number calculated using recursion
 
-        printf ("%d\n", Dumb::fibonacci ($argv[1]));
+        printf ("%d\n", Exponential::fibonacci ($argv[1]));
     }
     else
     {

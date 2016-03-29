@@ -1,11 +1,15 @@
 <?php
 /**
- *  unit test for fibonacci.php
+ *  unit test for fib_*.php
  *
  *  Verifies the fibonacci() function returns the correct value for
  *  the first 10 terms of the Fibonacci series.
  *
  *  By induction, the function works for all other positive integers.
+ *
+ *  The test is run for two implementations of fibonacci():
+ *    - exponential complexity (dumb implementation)
+ *    - linear complexity (inspired by functional programming)
  *
  *  @package    pbr
  *  @subpackage scripts
@@ -15,12 +19,13 @@
 
 use PHPUnit_Framework_TestCase as TestCase;
 
-require_once 'fibonacci.php';
+require_once 'fib_exponential.php';
+require_once 'fib_linear.php';
 
 /**
  * Unit test class derived from TestCase
  *
- *  ... provides one test case: test_fibonacci()
+ *  ... provides a test case for each implementation of fibonacci()
  */
 class TestFibonacci extends TestCase
 {
@@ -45,13 +50,32 @@ class TestFibonacci extends TestCase
     }
 
     /**
-     *  The test case for Dumb::fibonacci() in fibonacci.php.
-     *
-     *  Verifies the function for the first 10 terms of the Fibonacci series.
+     *  The test case for Exponential::fibonacci() in fib_exponential.php.
      */
-    function test_fibonacci ()
+    function test_exponential_fibonacci ()
     {
-        print ("test fibonacci()");
+        self::run_test("exponential fibonacci algorithm", 'Exponential::fibonacci');
+    }
+
+    /**
+     *  The test case for Linear::fibonacci() in fib_linear.php.
+     */
+    function test_linear_fibonacci ()
+    {
+        self::run_test("linear fibonacci algorithm", 'Linear::fibonacci');
+    }
+
+    /**
+     *  Run a simple test of an implementation of the Fibonacci series.
+     *
+     *  Verifies the function under test returns the correct result for the first 10 terms of the series.
+     *
+     * @param   string  $msg            Description of the function under test.
+     * @param   string  $fibonacci      Name of the function under test.
+     */
+    private function run_test($msg, $fibonacci)
+    {
+        print (" ... test $msg\n");
 
         $cardinal = array("th", "st", "nd", "rd");
         $nums = array(1, 0);
@@ -60,7 +84,8 @@ class TestFibonacci extends TestCase
         {
             $subscript = $cardinal[($ii < 4) ? $ii : 0];
 
-            $this->assertEquals($nums[0], Dumb::fibonacci($ii), "${ii}${subscript} Fibonacci number");
+            $this->assertEquals($nums[0],
+                call_user_func($fibonacci, $ii), "${ii}${subscript} Fibonacci number");
 
             $nums = array($nums[0] + $nums[1], $nums[0]);
         }
