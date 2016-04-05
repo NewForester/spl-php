@@ -7,9 +7,10 @@
  *
  *  By induction, the function works for all other positive integers.
  *
- *  The test is run for two implementations of fibonacci():
+ *  The test is run for three implementations of fibonacci():
  *    - exponential complexity (dumb implementation)
  *    - linear complexity (inspired by functional programming)
+ *    - log(n) complexity (as seen on Wikipedia)
  *
  *  @package    pbr
  *  @subpackage scripts
@@ -21,6 +22,7 @@ use PHPUnit_Framework_TestCase as TestCase;
 
 require_once 'fib_exponential.php';
 require_once 'fib_linear.php';
+require_once 'fib_logn.php';
 
 /**
  * Unit test class derived from TestCase
@@ -63,6 +65,14 @@ class TestFibonacci extends TestCase
     function test_linear_fibonacci ()
     {
         self::run_test("linear fibonacci algorithm", 'Linear::fibonacci');
+    }
+
+    /**
+     *  The test case for Logn::fibonacci() in fib_logn.php.
+     */
+    function test_logn_fibonacci ()
+    {
+        self::run_test("logn fibonacci algorithm", 'Logn::fibonacci');
     }
 
     /**
